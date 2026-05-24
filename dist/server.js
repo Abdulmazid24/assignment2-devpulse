@@ -377,7 +377,7 @@ var auth = (...roles) => {
         });
       }
       const decoded = jwt2.verify(token, env_default.secret);
-      const userData = await pool.query(`SELECT * FROM users WHERE email = $1`, [decoded.email]);
+      const userData = await pool.query(`SELECT * FROM users WHERE id = $1`, [decoded.id]);
       const user = userData.rows[0];
       if (!user) {
         return res.status(401).json({
